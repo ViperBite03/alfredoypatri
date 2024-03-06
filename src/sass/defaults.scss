@@ -56,6 +56,18 @@ button {
   outline: inherit;
 }
 
+input {
+  background: none;
+  color: inherit;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: text;
+  outline: inherit;
+}
+
 hr {
   border: 0;
   border-bottom: 1px solid var(--color2);
