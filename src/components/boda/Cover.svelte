@@ -28,7 +28,7 @@
       .title {
         font-family: 'Arsenica Trial', sans-serif;
         font-size: 35px;
-        opacity: 0;
+        color: white;
       }
 
       .heart {
