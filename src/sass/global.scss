@@ -1,0 +1,11 @@
+@import 'defaults.scss';
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.g-wrapper {
+  max-width: $breakpoint;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+//aqui se pone estilo general ;)

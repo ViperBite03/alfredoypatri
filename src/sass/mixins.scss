@@ -1,0 +1,13 @@
+$breakpoint: 1170px;
+
+@mixin desktop {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin notDesktop {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
