@@ -4,7 +4,7 @@
   .title {
     width: 100%;
     height: fit-content;
-    position: sticky;
+    position: relative;
 
     display: flex;
     flex-direction: column;
@@ -21,6 +21,8 @@
     }
 
     .name {
+      position: sticky;
+
       font-size: 35px;
       color: black;
     }
