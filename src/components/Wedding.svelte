@@ -1,17 +1,17 @@
 <script lang="ts">
-  import Confirmation from '@/components/boda/Confirmation.svelte'
-  import Alergies from '@/components/boda/Alergies.svelte'
+  import Forms from '@/components/boda/Forms.svelte'
   import Cover from '@/components/boda/Cover.svelte'
   import Title from '@/components/boda/Title.svelte'
 
   import { onMount } from 'svelte'
 
   let HTMLFlor: HTMLElement
+  let HTMLTitle: HTMLElement
 
   onMount(() => {
     document.addEventListener('scroll', () => {
       if (HTMLFlor) HTMLFlor.style.filter = `brightness(${1 - window.scrollY / 300})`
-      console.log(window.scrollY)
+      if (HTMLTitle) HTMLTitle.style.filter = `brightness(${1 - (window.scrollY - 300) / 500})`
     })
   })
 </script>
@@ -19,7 +19,6 @@
 <style lang="scss">
   .screen {
     position: relative;
-    height: 100dvh;
     width: 100%;
 
     .flor1 {
@@ -35,6 +34,22 @@
       right: -135px;
       bottom: -50px;
       transform: rotate(345deg);
+      z-index: 99;
+    }
+
+    h1 {
+      font-family: 'Arsenica Trial', sans-serif;
+      width: 100%;
+      font-size: 35px;
+      text-align: center;
+      color: white;
+
+      position: sticky;
+      margin-top: -50dvh;
+      margin-bottom: calc(50dvh - 27px);
+      top: 15px;
+
+      z-index: 99;
     }
   }
 </style>
@@ -44,7 +59,11 @@
   <img src="flor.png" alt="" class="flor2" bind:this={HTMLFlor} />
 
   <Cover />
-  <Title />
-  <Confirmation />
-  <Alergies />
+
+  <h1 bind:this={HTMLTitle}>Alfredo & Patricia</h1>
+
+  <div class="container">
+    <Title />
+    <Forms />
+  </div>
 </div>
