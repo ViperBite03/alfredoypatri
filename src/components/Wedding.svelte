@@ -19,6 +19,7 @@
 <style lang="scss">
   .screen {
     position: relative;
+    padding: 50px 0;
     width: 100%;
 
     .flor1 {
@@ -51,6 +52,19 @@
 
       z-index: 99;
     }
+
+    .tlf {
+      width: 300px;
+      display: flex;
+      justify-content: space-between;
+
+      position: absolute;
+      right: 0;
+      left: 0;
+      margin: auto;
+
+      text-decoration: underline;
+    }
   }
 </style>
 
@@ -65,5 +79,9 @@
   <div class="container">
     <Title />
     <Forms />
+    <div class="tlf">
+      <span>Patricia: 651838390</span>
+      <span>Alfredo: 635254794</span>
+    </div>
   </div>
 </div>

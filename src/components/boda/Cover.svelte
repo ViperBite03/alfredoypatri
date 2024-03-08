@@ -40,7 +40,7 @@
 
 <div class="cover">
   <div class="band">
-    <img src="FilledHeart.svg" alt="" class="heart" />
+    <img src="EmptyHeart.svg" alt="" class="heart" />
     <div class="title">Alfredo & Patricia</div>
   </div>
   <img src="ALFREDO & PATRICIA.png" alt="" class="bg" />
