@@ -19,7 +19,6 @@
 <style lang="scss">
   .screen {
     position: relative;
-    padding: 50px 0;
     width: 100%;
 
     .flor1 {
@@ -53,17 +52,21 @@
       z-index: 99;
     }
 
-    .tlf {
-      width: 300px;
-      display: flex;
-      justify-content: space-between;
+    .container {
+      padding: 50px 0;
 
-      position: absolute;
-      right: 0;
-      left: 0;
-      margin: auto;
+      .tlf {
+        width: 300px;
+        display: flex;
+        justify-content: space-between;
 
-      text-decoration: underline;
+        position: absolute;
+        right: 0;
+        left: 0;
+        margin: auto;
+
+        text-decoration: underline;
+      }
     }
   }
 </style>

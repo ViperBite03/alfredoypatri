@@ -13,7 +13,7 @@
 
     background-color: white;
     padding-bottom: 5px;
-    margin-top: -10px;
+    margin-top: -60px;
     top: 0;
 
     .initials {

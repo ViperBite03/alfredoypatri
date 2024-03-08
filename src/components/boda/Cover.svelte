@@ -10,20 +10,11 @@
       height: fit-content;
       width: 100%;
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      padding-bottom: 37.5px;
-
       position: absolute;
-      top: 35dvh;
+      top: calc(50dvh - 35px);
 
-      .title {
-        font-family: 'Arsenica Trial', sans-serif;
-        font-size: 35px;
-        color: white;
-      }
+      display: flex;
+      justify-content: center;
 
       .heart {
         height: 35px;
@@ -41,7 +32,6 @@
 <div class="cover">
   <div class="band">
     <img src="EmptyHeart.svg" alt="" class="heart" />
-    <div class="title">Alfredo & Patricia</div>
   </div>
   <img src="ALFREDO & PATRICIA.png" alt="" class="bg" />
 </div>

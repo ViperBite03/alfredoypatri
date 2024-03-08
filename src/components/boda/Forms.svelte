@@ -55,7 +55,6 @@
     }
 
     .confirmation {
-      height: 75dvh;
       width: 300px;
       margin: 10px;
 
@@ -78,7 +77,6 @@
       display: flex;
       flex-direction: column;
       width: 300px;
-      height: 75dvh;
 
       gap: 10px;
     }
@@ -118,7 +116,7 @@
 
     <div class="alergies">
       <div class="text">
-        <h2>Alergias</h2>
+        <h2>Alergias e intolerancias</h2>
         <div class="line" />
       </div>
 
