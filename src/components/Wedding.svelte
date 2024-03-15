@@ -10,8 +10,12 @@
 
   onMount(() => {
     document.addEventListener('scroll', () => {
-      if (HTMLFlor) HTMLFlor.style.filter = `brightness(${1 - window.scrollY / 300})`
+      let scrollMath = 1 - window.scrollY / 300
+
       if (HTMLTitle) HTMLTitle.style.filter = `brightness(${1 - (window.scrollY - 300) / 500})`
+      if (HTMLFlor && scrollMath >= 0.3) {
+        HTMLFlor.style.filter = `brightness(${scrollMath})`
+      }
     })
   })
 </script>
@@ -34,7 +38,6 @@
       right: -135px;
       bottom: -50px;
       transform: rotate(345deg);
-      z-index: 99;
     }
 
     h1 {
@@ -49,11 +52,13 @@
       margin-bottom: calc(50dvh - 27px);
       top: 15px;
 
-      z-index: 99;
+      z-index: 4;
     }
 
     .container {
-      padding: 50px 0;
+      position: relative;
+      padding-bottom: 50px;
+      z-index: 2;
 
       .tlf {
         width: 300px;
@@ -79,8 +84,8 @@
 
   <h1 bind:this={HTMLTitle}>Alfredo & Patricia</h1>
 
+  <Title />
   <div class="container">
-    <Title />
     <Forms />
     <div class="tlf">
       <span>Patricia: 651838390</span>

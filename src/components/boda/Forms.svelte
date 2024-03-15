@@ -30,6 +30,8 @@
     justify-content: center;
     gap: 50px;
 
+    z-index: 3;
+
     .text {
       display: flex;
       flex-direction: column;
@@ -82,16 +84,18 @@
     }
 
     .send {
-      background-color: rgba(0, 0, 0, 0.25);
+      background-color: rgb(160, 160, 160);
       padding: 5px;
-      width: 75px;
+      height: 35px;
+      width: 100px;
       border-radius: 5px;
       color: white;
       margin-top: -20px;
+      font-size: 20px;
       transition: 0.3s ease;
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgb(100, 100, 100);
         transition: 0.3s ease;
       }
     }
