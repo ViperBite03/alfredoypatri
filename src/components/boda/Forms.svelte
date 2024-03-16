@@ -39,13 +39,13 @@
     .filter((alergia: string) => alergias[alergia])
     .toString()
 
-  $: activasDefAlergia = activasAlergia + ',' + otrosAlergia
+  $: if (activasAlergia) activasDefAlergia = activasAlergia + ',' + otrosAlergia
 
   $: activasBebida = Object.keys(bebidas)
     .filter((bebida: string) => bebidas[bebida])
     .toString()
 
-  $: activasDefBebida = activasBebida + ',' + otrosBebida
+  $: if (activasBebida) activasDefBebida = activasBebida + ',' + otrosBebida
 </script>
 
 <style lang="scss">
@@ -143,7 +143,7 @@
 </style>
 
 <div class="forms">
-  <form class="form" action="https://formspree.io/f/xeqyzaok" method="POST">
+  <form class="form" action="https://formspree.io/f/mdoqlobq" method="POST">
     <div class="confirmation">
       <div class="text">
         <h2>Vienes, no?</h2>
@@ -154,7 +154,7 @@
       <input type="text" placeholder="Nombre y apellidos" name="nombre" bind:value={nameValue} />
       <div class="CC">
         <label><Checkbox name="asisto" class="checkbox" bind:value={asistoValue} /> Asisto</label>
-        <label><Checkbox name="transporte" /> Necesito transporte</label>
+        <label><Checkbox name="transporte" class="checkbox" /> Necesito transporte</label>
       </div>
     </div>
 
