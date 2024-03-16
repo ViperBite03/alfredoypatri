@@ -18,6 +18,16 @@
     ' J&B': false,
   }
 
+  let HTMLSend: HTMLElement
+  let asistoValue: boolean = false
+  let nameValue: string = ''
+
+  const canSend = () => {
+    if (asistoValue && nameValue) {
+      HTMLSend.type = 'submit'
+    }
+  }
+
   let activasAlergia: string
   let activasBebida: string
   let otrosAlergia: string = ''
@@ -123,6 +133,12 @@
         transition: 0.3s ease;
       }
     }
+
+    .error {
+      font-size: 13px;
+      color: red;
+      margin-top: -40px;
+    }
   }
 </style>
 
@@ -135,9 +151,9 @@
         <span class="c-text">Contaremos con servicio de autobuses, por lo que rogamos confirmación de asistencia y transporte.</span>
       </div>
 
-      <input type="text" placeholder="Nombre y apellidos" name="nombre" />
+      <input type="text" placeholder="Nombre y apellidos" name="nombre" bind:value={nameValue} />
       <div class="CC">
-        <label><Checkbox name="asisto" class="checkbox" /> Asisto</label>
+        <label><Checkbox name="asisto" class="checkbox" bind:value={asistoValue} /> Asisto</label>
         <label><Checkbox name="transporte" /> Necesito transporte</label>
       </div>
     </div>
@@ -168,9 +184,14 @@
       {/each}
       <input type="text" placeholder="Otros..." bind:value={otrosBebida} />
       <input type="text" bind:value={activasDefBebida} class="invisible" name="alcohol" style="display: none" />
+      <input type="text" placeholder="Mezcla" name="mezcla" />
+
       <!--Hacer el input de la mezcla-->
     </div>
 
-    <button class="send" type="submit">Enviar</button>
+    <button class="send" type="button" bind:this={HTMLSend} on:click={canSend}>Enviar</button>
+    {#if 1 == 1}
+      <span class="error">*Tienes que poner tu nombre y asistencia</span>
+    {/if}
   </form>
 </div>
