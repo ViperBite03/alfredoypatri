@@ -17,18 +17,16 @@
 
     &:checked {
       animation: beat 0.3s ease;
-      background-color: aquamarine;
 
       &:after {
         content: '';
         position: absolute;
-        top: 2px;
-        left: 2px;
-        width: 20px;
-        height: 20px;
-        //background-image: url('public/FilledHeart.svg');
+        width: 14px;
+        height: 14px;
+        background: no-repeat url('public/FilledHeart.svg');
         background-size: contain;
-        background-repeat: no-repeat;
+        margin-right: 2px;
+        margin-bottom: 1px;
       }
     }
 

@@ -9,15 +9,33 @@
     'Frutos secos': false,
   }
 
-  let activas: string
-  let otrosInput: string = ''
-  let activasDef: string
+  const bebidas = {
+    Seegrams: false,
+    Tanqueray: false,
+    Barceló: false,
+    Brugal: false,
+    Ballantines: false,
+    ' J&B': false,
+  }
 
-  $: activas = Object.keys(alergias)
+  let activasAlergia: string
+  let activasBebida: string
+  let otrosAlergia: string = ''
+  let otrosBebida: string = ''
+  let activasDefAlergia: string
+  let activasDefBebida: string
+
+  $: activasAlergia = Object.keys(alergias)
     .filter((alergia: string) => alergias[alergia])
     .toString()
 
-  $: activasDef = activas + ',' + otrosInput
+  $: activasDefAlergia = activasAlergia + ',' + otrosAlergia
+
+  $: activasBebida = Object.keys(bebidas)
+    .filter((bebida: string) => bebidas[bebida])
+    .toString()
+
+  $: activasDefBebida = activasBebida + ',' + otrosBebida
 </script>
 
 <style lang="scss">
@@ -37,6 +55,7 @@
       flex-direction: column;
       align-items: center;
       gap: 15px;
+      width: 100%;
       margin-bottom: 20px;
 
       h2 {
@@ -56,12 +75,17 @@
       }
     }
 
-    .confirmation {
+    .confirmation,
+    .alergies,
+    .bebidas {
       width: 300px;
-      margin: 10px;
-
       display: flex;
       flex-direction: column;
+    }
+
+    .confirmation {
+      margin: 10px;
+
       align-items: center;
       gap: 15px;
 
@@ -76,10 +100,10 @@
     }
 
     .alergies {
-      display: flex;
-      flex-direction: column;
-      width: 300px;
+      gap: 10px;
+    }
 
+    .bebidas {
       gap: 10px;
     }
 
@@ -113,7 +137,7 @@
 
       <input type="text" placeholder="Nombre y apellidos" name="nombre" />
       <div class="CC">
-        <label><Checkbox name="vengo" class="checkbox" /> Vengo</label>
+        <label><Checkbox name="asisto" class="checkbox" /> Asisto</label>
         <label><Checkbox name="transporte" /> Necesito transporte</label>
       </div>
     </div>
@@ -127,8 +151,24 @@
       {#each Object.keys(alergias) as alergia}
         <label><Checkbox bind:value={alergias[alergia]} class="checkbox" /> {alergia}</label>
       {/each}
-      <input type="text" placeholder="Otros..." bind:value={otrosInput} />
-      <input type="text" bind:value={activasDef} class="invisible" name="alergias" style="display: none" />
+      <input type="text" placeholder="Otros..." bind:value={otrosAlergia} />
+      <input type="text" bind:value={activasDefAlergia} class="invisible" name="alergias" style="display: none" />
+    </div>
+
+    <div class="bebidas">
+      <div class="text">
+        <h2>Bebida</h2>
+        <div class="line" />
+        <span class="b-text"> Después continuaremos la fiesta hasta que el cuerpo aguante en la Casa Rural de Fresno el Viejo!</span>
+        <span class="b-text"> Para ello necesitamos que nos confirméis también si venís y qué bebéis para que que no falte de nada!</span>
+      </div>
+
+      {#each Object.keys(bebidas) as bebida}
+        <label><Checkbox bind:value={bebidas[bebida]} class="checkbox" /> {bebida}</label>
+      {/each}
+      <input type="text" placeholder="Otros..." bind:value={otrosBebida} />
+      <input type="text" bind:value={activasDefBebida} class="invisible" name="alcohol" style="display: none" />
+      <!--Hacer el input de la mezcla-->
     </div>
 
     <button class="send" type="submit">Enviar</button>

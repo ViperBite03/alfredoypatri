@@ -17,6 +17,8 @@
       position: absolute;
       width: 245px;
       z-index: 4;
+
+      filter: brightness(0.9);
     }
 
     .flor1 {
@@ -53,6 +55,7 @@
 
       .heart {
         height: 35px;
+        z-index: 4;
       }
     }
 

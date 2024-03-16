@@ -64,8 +64,8 @@
   <div class="container">
     <Forms />
     <div class="tlf">
-      <span>Patricia: 651838390</span>
-      <span>Alfredo: 635254794</span>
+      <a href="https://wa.me/651838390">Patricia: 651 838 390</a>
+      <a href="https://wa.me/635254794">Alfredo: 635 254 794</a>
     </div>
   </div>
 </div>
