@@ -18,22 +18,18 @@
     ' J&B': false,
   }
 
-  let HTMLSend: HTMLElement
-  let asistoValue: boolean = false
-  let nameValue: string = ''
-
-  const canSend = () => {
-    if (asistoValue && nameValue) {
-      HTMLSend.type = 'submit'
-    }
-  }
-
   let activasAlergia: string
   let activasBebida: string
   let otrosAlergia: string = ''
   let otrosBebida: string = ''
   let activasDefAlergia: string
   let activasDefBebida: string
+
+  let nameValue: string
+
+  const canSend = () => {
+    if (!nameValue) return false
+  }
 
   $: activasAlergia = Object.keys(alergias)
     .filter((alergia: string) => alergias[alergia])
@@ -56,7 +52,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 50px;
+    gap: 45px;
 
     z-index: 3;
 
@@ -137,7 +133,8 @@
     .error {
       font-size: 13px;
       color: red;
-      margin-top: -40px;
+      width: 100%;
+      text-align: left;
     }
   }
 </style>
@@ -151,11 +148,14 @@
         <span class="c-text">Contaremos con servicio de autobuses, por lo que rogamos confirmación de asistencia y transporte.</span>
       </div>
 
-      <input type="text" placeholder="Nombre y apellidos" name="nombre" bind:value={nameValue} />
+      <input type="text" placeholder="Nombre y apellidos" bind:value={nameValue} name="nombre" required />
       <div class="CC">
-        <label><Checkbox name="asisto" class="checkbox" bind:value={asistoValue} /> Asisto</label>
-        <label><Checkbox name="transporte" class="checkbox" /> Necesito transporte</label>
+        <div><Checkbox name="asisto" /> Asisto</div>
+        <div><Checkbox name="transporte" /> Necesito transporte</div>
       </div>
+      {#if !canSend}
+        <span class="error">*Tienes que poner tu nombre y asistencia</span>
+      {/if}
     </div>
 
     <div class="alergies">
@@ -165,10 +165,10 @@
       </div>
 
       {#each Object.keys(alergias) as alergia}
-        <label><Checkbox bind:value={alergias[alergia]} class="checkbox" /> {alergia}</label>
+        <div><Checkbox bind:value={alergias[alergia]} /> {alergia}</div>
       {/each}
       <input type="text" placeholder="Otros..." bind:value={otrosAlergia} />
-      <input type="text" bind:value={activasDefAlergia} class="invisible" name="alergias" style="display: none" />
+      <input type="text" bind:value={activasDefAlergia} name="alergias" class="invisible" style="display: none" />
     </div>
 
     <div class="bebidas">
@@ -180,18 +180,13 @@
       </div>
 
       {#each Object.keys(bebidas) as bebida}
-        <label><Checkbox bind:value={bebidas[bebida]} class="checkbox" /> {bebida}</label>
+        <div><Checkbox bind:value={bebidas[bebida]} /> {bebida}</div>
       {/each}
       <input type="text" placeholder="Otros..." bind:value={otrosBebida} />
-      <input type="text" bind:value={activasDefBebida} class="invisible" name="alcohol" style="display: none" />
+      <input type="text" bind:value={activasDefBebida} name="alcohol" class="invisible" style="display: none" />
       <input type="text" placeholder="Mezcla" name="mezcla" />
-
-      <!--Hacer el input de la mezcla-->
     </div>
 
-    <button class="send" type="button" bind:this={HTMLSend} on:click={canSend}>Enviar</button>
-    {#if 1 == 1}
-      <span class="error">*Tienes que poner tu nombre y asistencia</span>
-    {/if}
+    <button class="send" type="submit" on:click={canSend}>Enviar</button>
   </form>
 </div>

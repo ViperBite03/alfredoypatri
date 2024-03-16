@@ -1,5 +1,6 @@
 <script lang="ts">
   export let value: boolean = false
+  export let name: string = ''
 </script>
 
 <style lang="scss">
@@ -42,4 +43,4 @@
   }
 </style>
 
-<input type="checkbox" class="checkbox-custom" checked={value} on:click={() => (value = !value)} aria-label="checkbox" />
+<input type="checkbox" class="checkbox-custom" checked={value} on:click={() => (value = !value)} aria-label="checkbox" {name} />
