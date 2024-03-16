@@ -4,7 +4,6 @@
   import Title from '@/components/boda/Title.svelte'
 
   import { onMount } from 'svelte'
-
   let HTMLTitle: HTMLElement
 
   onMount(() => {
@@ -18,6 +17,30 @@
   .screen {
     position: relative;
     width: 100%;
+
+    .flor1 {
+      position: absolute;
+      height: 215px;
+      left: -135px;
+      top: -50px;
+    }
+
+    .flor2 {
+      position: absolute;
+      height: 215px;
+      right: -135px;
+      top: calc(100dvh - 165px);
+      transform: rotate(345deg);
+    }
+
+    .flor3 {
+      position: absolute;
+      height: 215px;
+      right: -135px;
+      bottom: -50px;
+      filter: brightness(0.8);
+      transform: rotate(345deg);
+    }
 
     h1 {
       font-family: 'Arsenica Trial', sans-serif;
@@ -56,6 +79,10 @@
 </style>
 
 <div class="screen">
+  <img src="flor.png" alt="" class="flor1" />
+  <img src="flor.png" alt="" class="flor2" />
+  <img src="flor.png" alt="" class="flor3" />
+
   <Cover />
 
   <h1 bind:this={HTMLTitle}>Alfredo & Patricia</h1>
