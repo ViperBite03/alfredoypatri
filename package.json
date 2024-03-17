@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "--yes astro db login && astro build --remote",
+    "build": "astro db login --yes && astro build --remote",
     "preview": "astro preview",
     "astro": "astro"
   },
