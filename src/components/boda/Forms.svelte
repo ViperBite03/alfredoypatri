@@ -51,13 +51,13 @@
     .filter((alergia: string) => alergias[alergia])
     .toString()
 
-  $: if (activasAlergia) activasDefAlergia = activasAlergia + ',' + otrosAlergia
+  $: activasDefAlergia = otrosAlergia ? activasAlergia + ',' + otrosAlergia : activasAlergia
 
   $: activasBebida = Object.keys(bebidas)
     .filter((bebida: string) => bebidas[bebida])
     .toString()
 
-  $: if (activasBebida) activasDefBebida = activasBebida + ',' + otrosBebida
+  $: activasDefBebida = otrosBebida ? activasBebida + ',' + otrosBebida : activasBebida
 </script>
 
 <style lang="scss">
@@ -95,6 +95,13 @@
         text-align: center;
         font-size: 18px;
       }
+    }
+
+    .pack {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 18px;
     }
 
     .confirmation,
@@ -166,8 +173,14 @@
 
       <input type="text" placeholder="Nombre y apellidos" bind:value={nameValue} name="nombre" required />
       <div class="CC">
-        <div><Checkbox name="asisto" bind:value={asisto} /> Asisto</div>
-        <div><Checkbox name="transporte" bind:value={transporte} /> Necesito transporte</div>
+        <div class="pack">
+          <Checkbox name="asisto" bind:value={asisto} />
+          <span>Asisto</span>
+        </div>
+        <div class="pack">
+          <Checkbox name="transporte" bind:value={transporte} />
+          <span> Necesito transporte</span>
+        </div>
       </div>
       {#if !canSend}
         <span class="error">*Tienes que poner tu nombre y asistencia</span>
@@ -181,7 +194,10 @@
       </div>
 
       {#each Object.keys(alergias) as alergia}
-        <div><Checkbox bind:value={alergias[alergia]} /> {alergia}</div>
+        <div class="pack">
+          <Checkbox bind:value={alergias[alergia]} />
+          <span>{alergia}</span>
+        </div>
       {/each}
       <input type="text" placeholder="Otros..." bind:value={otrosAlergia} />
       <input type="text" bind:value={activasDefAlergia} name="alergias" class="invisible" style="display: none" />
@@ -196,7 +212,10 @@
       </div>
 
       {#each Object.keys(bebidas) as bebida}
-        <div><Checkbox bind:value={bebidas[bebida]} /> {bebida}</div>
+        <div class="pack">
+          <Checkbox bind:value={bebidas[bebida]} />
+          <span> {bebida}</span>
+        </div>
       {/each}
       <input type="text" placeholder="Otros..." bind:value={otrosBebida} />
       <input type="text" bind:value={activasDefBebida} name="alcohol" class="invisible" style="display: none" />

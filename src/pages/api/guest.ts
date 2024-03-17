@@ -8,7 +8,7 @@ export async function GET({ params, request }) {
 
 export async function POST({ params, request }) {
   const data = await request.json()
-  console.log(data.nombre)
+  console.log(data)
   await db.insert(Guest).values({
     nombre: data.nombre,
     asisto: 'si',
