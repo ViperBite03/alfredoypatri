@@ -18,17 +18,33 @@
     ' J&B': false,
   }
 
-  let activasAlergia: string
-  let activasBebida: string
+  let activasAlergia: string = ''
+  let activasBebida: string = ''
   let otrosAlergia: string = ''
   let otrosBebida: string = ''
-  let activasDefAlergia: string
-  let activasDefBebida: string
-
+  let activasDefAlergia: string = ''
+  let activasDefBebida: string = ''
   let nameValue: string
+  let transporte: boolean = false
+  let asisto: boolean = false
 
-  const canSend = () => {
+  const canSend = async () => {
+    console.log(JSON.stringify({}))
     if (!nameValue) return false
+
+    const response = await fetch('/api/guest', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        nombre: nameValue,
+        asisto: asisto ? 'si' : 'no',
+        transporte: transporte ? 'si' : 'no',
+        alergias: activasDefAlergia,
+        alcohol: activasDefBebida,
+      }),
+    })
   }
 
   $: activasAlergia = Object.keys(alergias)
@@ -140,7 +156,7 @@
 </style>
 
 <div class="forms">
-  <form class="form" action="https://formspree.io/f/mdoqlobq" method="POST">
+  <form class="form">
     <div class="confirmation">
       <div class="text">
         <h2>Vienes, no?</h2>
@@ -150,8 +166,8 @@
 
       <input type="text" placeholder="Nombre y apellidos" bind:value={nameValue} name="nombre" required />
       <div class="CC">
-        <div><Checkbox name="asisto" /> Asisto</div>
-        <div><Checkbox name="transporte" /> Necesito transporte</div>
+        <div><Checkbox name="asisto" bind:value={asisto} /> Asisto</div>
+        <div><Checkbox name="transporte" bind:value={transporte} /> Necesito transporte</div>
       </div>
       {#if !canSend}
         <span class="error">*Tienes que poner tu nombre y asistencia</span>
@@ -187,6 +203,6 @@
       <input type="text" placeholder="Mezcla" name="mezcla" />
     </div>
 
-    <button class="send" type="submit" on:click={canSend}>Enviar</button>
+    <button class="send" on:click={canSend}>Enviar</button>
   </form>
 </div>
