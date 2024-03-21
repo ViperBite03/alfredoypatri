@@ -27,12 +27,9 @@
   let nameValue: string
   let asisto: boolean = false
   let transporte: boolean = false
-  let activasDefAlergia: string = ''
-  let activasDefBebida: string = ''
   let mezclaValue: string = ''
 
   const canSend = async () => {
-    console.log(JSON.stringify({}))
     if (!nameValue) return false
 
     await fetch('/api/guest', {
@@ -44,8 +41,8 @@
         nombre: nameValue,
         asisto: asisto ? 'si' : 'no',
         transporte: transporte ? 'si' : 'no',
-        alergias: activasDefAlergia ? activasDefAlergia : '---',
-        alcohol: activasDefBebida ? activasDefBebida : '---',
+        alergias: activasAlergia ? activasAlergia : '---',
+        alcohol: activasBebida ? activasBebida : '---',
         mezcla: mezclaValue ? mezclaValue : '---',
       }),
     })
@@ -156,13 +153,6 @@
         transition: 0.3s ease;
       }
     }
-
-    .error {
-      font-size: 13px;
-      color: red;
-      width: 100%;
-      text-align: left;
-    }
   }
 </style>
 
@@ -185,9 +175,6 @@
         <span> Necesito transporte</span>
       </div>
     </div>
-    {#if !canSend}
-      <span class="error">*Tienes que poner tu nombre y asistencia</span>
-    {/if}
   </div>
 
   <div class="alergies">
@@ -203,7 +190,6 @@
       </div>
     {/each}
     <input type="text" placeholder="Otros..." bind:value={otrosAlergia} />
-    <input type="text" bind:value={activasDefAlergia} name="alergias" class="invisible" style="display: none" />
   </div>
 
   <div class="bebidas">
@@ -221,11 +207,8 @@
       </div>
     {/each}
     <input type="text" placeholder="Otros..." bind:value={otrosBebida} />
-    <input type="text" bind:value={activasDefBebida} name="alcohol" class="invisible" style="display: none" />
     <input type="text" placeholder="Mezcla" name="mezcla" bind:value={mezclaValue} />
   </div>
-
-  {activasBebida}
 
   <button class="send" type="submit">Enviar</button>
 </form>

@@ -6,7 +6,7 @@
   export let id: string = ''
   export let padding: string = ''
 
-  const close = () => (open = false)
+  const reload = () => location.reload()
 
   let bodyOverflow
 
@@ -88,7 +88,7 @@
 
 {#if open}
   <div class="modal-container" {id}>
-    <button class="modal-background" on:click={close} />
+    <button class="modal-background" on:click={reload} />
     <div class="modal" style="max-width: {maxWidth}px">
       <div class="modal-header">
         <slot name="modal-header" />

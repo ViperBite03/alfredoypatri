@@ -52,6 +52,11 @@
         margin: auto;
 
         text-decoration: underline;
+
+        img {
+          height: 18px;
+          opacity: 0.8;
+        }
       }
     }
   }
@@ -67,6 +72,7 @@
     <Form bind:modal />
     <div class="tlf">
       <a href="https://wa.me/651838390">Patricia: 651 838 390</a>
+      <img src="Whatsapp.svg" alt="" />
       <a href="https://wa.me/635254794">Alfredo: 635 254 794</a>
     </div>
   </div>
