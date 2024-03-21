@@ -11,7 +11,11 @@ export async function POST({ params, request }) {
   console.log(data)
   await db.insert(Guest).values({
     nombre: data.nombre,
-    asisto: 'si',
+    asisto: data.asisto,
+    transporte: data.transporte,
+    alergias: data.alergias,
+    alcohol: data.alcohol,
+    mezcla: data.mezcla,
   })
 
   return new Response(

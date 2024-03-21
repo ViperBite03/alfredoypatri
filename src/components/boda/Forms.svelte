@@ -22,11 +22,13 @@
   let activasBebida: string = ''
   let otrosAlergia: string = ''
   let otrosBebida: string = ''
+
+  let nameValue: string
+  let asisto: boolean = false
+  let transporte: boolean = false
   let activasDefAlergia: string = ''
   let activasDefBebida: string = ''
-  let nameValue: string
-  let transporte: boolean = false
-  let asisto: boolean = false
+  let mezclaValue: string = ''
 
   const canSend = async () => {
     console.log(JSON.stringify({}))
@@ -43,6 +45,7 @@
         transporte: transporte ? 'si' : 'no',
         alergias: activasDefAlergia,
         alcohol: activasDefBebida,
+        mezcla: mezclaValue,
       }),
     })
   }
@@ -219,7 +222,7 @@
       {/each}
       <input type="text" placeholder="Otros..." bind:value={otrosBebida} />
       <input type="text" bind:value={activasDefBebida} name="alcohol" class="invisible" style="display: none" />
-      <input type="text" placeholder="Mezcla" name="mezcla" />
+      <input type="text" placeholder="Mezcla" name="mezcla" bind:value={mezclaValue} />
     </div>
 
     <button class="send" on:click={canSend}>Enviar</button>
