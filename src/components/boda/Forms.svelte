@@ -32,7 +32,7 @@
     console.log(JSON.stringify({}))
     if (!nameValue) return false
 
-    const response = await fetch('/api/guest', {
+    await fetch('/api/guest', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -100,7 +100,7 @@
     .pack {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 8px;
       font-size: 18px;
     }
 
