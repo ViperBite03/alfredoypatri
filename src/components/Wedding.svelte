@@ -1,11 +1,13 @@
 <script lang="ts">
-  import Forms from '@/components/boda/Forms.svelte'
+  import Form from '@/components/boda/Form.svelte'
   import Cover from '@/components/boda/Cover.svelte'
   import Title from '@/components/boda/Title.svelte'
+  import Modal from '@/components/boda/Modal.svelte'
 
   import { onMount } from 'svelte'
 
   let HTMLTitle: HTMLElement
+  let modal: boolean
 
   onMount(() => {
     document.addEventListener('scroll', () => {
@@ -62,10 +64,18 @@
 
   <Title />
   <div class="container">
-    <Forms />
+    <Form bind:modal />
     <div class="tlf">
       <a href="https://wa.me/651838390">Patricia: 651 838 390</a>
       <a href="https://wa.me/635254794">Alfredo: 635 254 794</a>
     </div>
   </div>
+
+  <Modal bind:open={modal} padding="20px">
+    <div slot="modal-header">
+      <h2>Respuesta enviada</h2>
+    </div>
+
+    ¡Te esperamos allí!
+  </Modal>
 </div>

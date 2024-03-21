@@ -1,5 +1,6 @@
 <script lang="ts">
   import Checkbox from '../Checkbox.svelte'
+  export let modal: boolean = false
 
   const alergias = {
     Huevos: false,
@@ -43,24 +44,24 @@
         nombre: nameValue,
         asisto: asisto ? 'si' : 'no',
         transporte: transporte ? 'si' : 'no',
-        alergias: activasDefAlergia,
-        alcohol: activasDefBebida,
-        mezcla: mezclaValue,
+        alergias: activasDefAlergia ? activasDefAlergia : '---',
+        alcohol: activasDefBebida ? activasDefBebida : '---',
+        mezcla: mezclaValue ? mezclaValue : '---',
       }),
     })
+
+    modal = true
   }
 
   $: activasAlergia = Object.keys(alergias)
     .filter((alergia: string) => alergias[alergia])
+    .concat([otrosAlergia])
     .toString()
-
-  $: activasDefAlergia = otrosAlergia ? activasAlergia + ',' + otrosAlergia : activasAlergia
 
   $: activasBebida = Object.keys(bebidas)
     .filter((bebida: string) => bebidas[bebida])
+    .concat([otrosBebida])
     .toString()
-
-  $: activasDefBebida = otrosBebida ? activasBebida + ',' + otrosBebida : activasBebida
 </script>
 
 <style lang="scss">
@@ -165,66 +166,66 @@
   }
 </style>
 
-<div class="forms">
-  <form class="form">
-    <div class="confirmation">
-      <div class="text">
-        <h2>Vienes, no?</h2>
-        <div class="line" />
-        <span class="c-text">Contaremos con servicio de autobuses, por lo que rogamos confirmación de asistencia y transporte.</span>
-      </div>
-
-      <input type="text" placeholder="Nombre y apellidos" bind:value={nameValue} name="nombre" required />
-      <div class="CC">
-        <div class="pack">
-          <Checkbox name="asisto" bind:value={asisto} />
-          <span>Asisto</span>
-        </div>
-        <div class="pack">
-          <Checkbox name="transporte" bind:value={transporte} />
-          <span> Necesito transporte</span>
-        </div>
-      </div>
-      {#if !canSend}
-        <span class="error">*Tienes que poner tu nombre y asistencia</span>
-      {/if}
+<form class="form" on:submit|preventDefault={canSend}>
+  <div class="confirmation">
+    <div class="text">
+      <h2>Vienes, no?</h2>
+      <div class="line" />
+      <span class="c-text">Contaremos con servicio de autobuses, por lo que rogamos confirmación de asistencia y transporte.</span>
     </div>
 
-    <div class="alergies">
-      <div class="text">
-        <h2>Alergias e intolerancias</h2>
-        <div class="line" />
+    <input type="text" placeholder="Nombre y apellidos" bind:value={nameValue} name="nombre" required />
+    <div class="CC">
+      <div class="pack">
+        <Checkbox name="asisto" bind:value={asisto} />
+        <span>Asisto</span>
       </div>
+      <div class="pack">
+        <Checkbox name="transporte" bind:value={transporte} />
+        <span> Necesito transporte</span>
+      </div>
+    </div>
+    {#if !canSend}
+      <span class="error">*Tienes que poner tu nombre y asistencia</span>
+    {/if}
+  </div>
 
-      {#each Object.keys(alergias) as alergia}
-        <div class="pack">
-          <Checkbox bind:value={alergias[alergia]} />
-          <span>{alergia}</span>
-        </div>
-      {/each}
-      <input type="text" placeholder="Otros..." bind:value={otrosAlergia} />
-      <input type="text" bind:value={activasDefAlergia} name="alergias" class="invisible" style="display: none" />
+  <div class="alergies">
+    <div class="text">
+      <h2>Alergias e intolerancias</h2>
+      <div class="line" />
     </div>
 
-    <div class="bebidas">
-      <div class="text">
-        <h2>Bebida</h2>
-        <div class="line" />
-        <span class="b-text"> Después continuaremos la fiesta hasta que el cuerpo aguante en la Casa Rural de Fresno el Viejo!</span>
-        <span class="b-text"> Para ello necesitamos que nos confirméis también si venís y qué bebéis para que que no falte de nada!</span>
+    {#each Object.keys(alergias) as alergia}
+      <div class="pack">
+        <Checkbox bind:value={alergias[alergia]} />
+        <span>{alergia}</span>
       </div>
+    {/each}
+    <input type="text" placeholder="Otros..." bind:value={otrosAlergia} />
+    <input type="text" bind:value={activasDefAlergia} name="alergias" class="invisible" style="display: none" />
+  </div>
 
-      {#each Object.keys(bebidas) as bebida}
-        <div class="pack">
-          <Checkbox bind:value={bebidas[bebida]} />
-          <span> {bebida}</span>
-        </div>
-      {/each}
-      <input type="text" placeholder="Otros..." bind:value={otrosBebida} />
-      <input type="text" bind:value={activasDefBebida} name="alcohol" class="invisible" style="display: none" />
-      <input type="text" placeholder="Mezcla" name="mezcla" bind:value={mezclaValue} />
+  <div class="bebidas">
+    <div class="text">
+      <h2>Bebida</h2>
+      <div class="line" />
+      <span class="b-text"> Después continuaremos la fiesta hasta que el cuerpo aguante en la Casa Rural de Fresno el Viejo!</span>
+      <span class="b-text"> Para ello necesitamos que nos confirméis también si venís y qué bebéis para que que no falte de nada!</span>
     </div>
 
-    <button class="send" on:click={canSend}>Enviar</button>
-  </form>
-</div>
+    {#each Object.keys(bebidas) as bebida}
+      <div class="pack">
+        <Checkbox bind:value={bebidas[bebida]} />
+        <span> {bebida}</span>
+      </div>
+    {/each}
+    <input type="text" placeholder="Otros..." bind:value={otrosBebida} />
+    <input type="text" bind:value={activasDefBebida} name="alcohol" class="invisible" style="display: none" />
+    <input type="text" placeholder="Mezcla" name="mezcla" bind:value={mezclaValue} />
+  </div>
+
+  {activasBebida}
+
+  <button class="send" type="submit">Enviar</button>
+</form>
