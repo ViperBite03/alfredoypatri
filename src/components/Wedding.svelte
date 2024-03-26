@@ -7,10 +7,12 @@
   import { onMount } from 'svelte'
 
   let HTMLTitle: HTMLElement
+  let HTMLFlor: HTMLElement
   let modal: boolean
 
   onMount(() => {
     document.addEventListener('scroll', () => {
+      if (HTMLTitle) HTMLTitle.style.filter = `brightness(${1 - (window.scrollY - 300) / 500})`
       if (HTMLTitle) HTMLTitle.style.filter = `brightness(${1 - (window.scrollY - 300) / 500})`
     })
   })
@@ -20,6 +22,24 @@
   .screen {
     position: relative;
     width: 100%;
+
+    .flor2 {
+      height: 170px;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+
+      position: absolute;
+      width: 245px;
+      z-index: 4;
+
+      filter: brightness(0.9);
+
+      img {
+        height: 215px;
+        transform: rotate(345deg);
+      }
+    }
 
     h1 {
       font-family: 'Arsenica Trial', sans-serif;
@@ -63,6 +83,10 @@
 </style>
 
 <div class="screen">
+  <div class="flor2">
+    <img src="flor.png" alt="" />
+  </div>
+
   <Cover />
 
   <h1 bind:this={HTMLTitle}>Alfredo & Patricia</h1>

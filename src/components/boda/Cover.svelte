@@ -12,15 +12,6 @@
     background-position-y: 50%;
     background-position-x: center;
 
-    .flor1,
-    .flor2 {
-      position: absolute;
-      width: 245px;
-      z-index: 4;
-
-      filter: brightness(0.9);
-    }
-
     .flor1 {
       height: 215px;
 
@@ -29,18 +20,12 @@
 
       background-position-x: -104px;
       background-position-y: -50px;
-    }
 
-    .flor2 {
-      height: 170px;
-      right: 0;
-      bottom: 0;
-      overflow: hidden;
+      position: absolute;
+      width: 245px;
+      z-index: 4;
 
-      img {
-        height: 215px;
-        transform: rotate(345deg);
-      }
+      filter: brightness(0.9);
     }
 
     .band {
@@ -71,9 +56,7 @@
 
 <div class="cover">
   <div class="flor1" />
-  <div class="flor2">
-    <img src="flor.png" alt="" />
-  </div>
+
   <div class="band">
     <img src="EmptyHeart.svg" alt="" class="heart" />
   </div>

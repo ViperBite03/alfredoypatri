@@ -105,6 +105,7 @@
       font-size: 18px;
     }
 
+    .pre-boda,
     .confirmation,
     .alergies,
     .bebidas {
@@ -157,6 +158,17 @@
 </style>
 
 <form class="form" on:submit|preventDefault={canSend}>
+  <div class="pre-boda">
+    <div class="text">
+      <h2>¡PREBODA!</h2>
+      <div class="line" />
+      <span class="a-text">
+        Para ir calentando y entrando en el ambiente, haremos un picoteo el viernes 12 en la casa Rural La Cañada, en Fresno el Viejo.
+      </span>
+      <span class="a-text">¡Os esperamos allí a las 18.00h!</span>
+    </div>
+  </div>
+
   <div class="confirmation">
     <div class="text">
       <h2>Vienes, no?</h2>
@@ -194,9 +206,11 @@
 
   <div class="bebidas">
     <div class="text">
-      <h2>Bebida</h2>
+      <h2>¡Que el ritmo no pare!</h2>
       <div class="line" />
-      <span class="b-text"> Después continuaremos la fiesta hasta que el cuerpo aguante en la Casa Rural de Fresno el Viejo!</span>
+      <span class="b-text">
+        Después de la barra libre en El Ventorro, continuaremos la fiesta hasta que el cuerpo aguante en la Casa Rural de Fresno el Viejo!</span
+      >
       <span class="b-text"> Para ello necesitamos que nos confirméis también si venís y qué bebéis para que que no falte de nada!</span>
     </div>
 
