@@ -22,10 +22,10 @@
     var valorActualScrollY = window.scrollY
 
     // Calcular la tasa de progreso como un número entre 0 y 1
-    var tasaDeProgreso = 1 - valorActualScrollY / maxScrollY
+    var tasaDeProgreso = 0.8 - valorActualScrollY / maxScrollY
 
     // Asegurar que la tasa de progreso esté siempre entre 0 y 1
-    tasaDeProgreso = Math.min(Math.max(tasaDeProgreso, 0), 1)
+    tasaDeProgreso = Math.min(Math.max(tasaDeProgreso, 0), 0.8)
 
     return tasaDeProgreso
   }
@@ -49,11 +49,9 @@
       bottom: 0;
       overflow: hidden;
 
-      position: absolute;
+      position: fixed;
       width: 245px;
-      z-index: 4;
-
-      filter: brightness(0.9);
+      z-index: 1;
 
       img {
         height: 215px;
@@ -103,7 +101,7 @@
 </style>
 
 <div class="screen">
-  <div class="flor2">
+  <div class="flor2" bind:this={HTMLFlor}>
     <img src="flor.png" alt="" />
   </div>
 
@@ -117,7 +115,7 @@
     <div class="tlf">
       <a href="https://wa.me/651838390">Patricia: 651 838 390</a>
       <img src="Whatsapp.svg" alt="" />
-      <a href="https://wa.me/635254794">Alfredo: 635 254 794</a>
+      <a href="https://wa.me/635254794" style="background-color: white;">Alfredo: 635 254 794</a>
     </div>
   </div>
 
