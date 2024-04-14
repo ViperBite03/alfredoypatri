@@ -171,7 +171,7 @@
 
   <div class="confirmation">
     <div class="text">
-      <h2>¡BODA!</h2>
+      <h2>y por fin... ¡LLEGÓ EL DÍA!</h2>
       <div class="line" />
       <span class="c-text">Contaremos con servicio de autobuses, por lo que rogamos confirmación de asistencia y transporte.</span>
     </div>
